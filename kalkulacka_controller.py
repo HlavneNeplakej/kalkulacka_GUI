@@ -1,5 +1,6 @@
+from sys import platform
 import tkinter as tk
-import tkmacosx as tk_mac
+
 
 class KalkulackaController:
 

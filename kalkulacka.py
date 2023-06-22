@@ -11,8 +11,20 @@ class KalkulackaModel:
 
     def evaluate_expression(self):
         try:
-            result = eval(self.expression)
-            self.expression = str(result)
+            if "×" in self.expression:
+                self.expression = self.expression.replace("×", "*")
+                self.result = eval(self.expression)
+            elif "÷" in self.expression:
+                self.expression = self.expression.replace("÷", "/")
+                self.result = eval(self.expression)
+            else:
+                self.result = eval(self.expression)
+
+            if self.result % 1 == 0:
+                self.expression = str(int(self.result))
+            else:
+                self.expression = str(self.result)
+
         except ZeroDivisionError:
             self.expression = "Error: Division by zero"
         except SyntaxError:
